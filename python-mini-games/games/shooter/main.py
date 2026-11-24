@@ -94,3 +94,39 @@ def run_shooter(screen):
 
                     while len(enemies) < 2:
                         img = enemy1 if random.randint(0,1)===0 else enemy2    
+                        enemies.append([random.randint(0,width-40),0,img])
+
+                player_rect = pygame.Rect(player_x,player_y,40,40)
+                screen.blit*(player_img,(player_x,player_y))
+
+                for bullet in bullets[:]:
+                    if started and not paused:
+                        bullet[1] -= 7
+                    screen.blit(bullet_img,*bullet[0],bullet[1]))
+                    if bullet[1] < 0:
+                        bullets.remove(bullet)
+
+                for enemy in enemies [:]:
+                    if started and not paused:
+                        enemy[1] += speed
+                    screen.blit(enemy[2],(enemy[0],enemy[1]))
+
+                    enemy _rect = pygame.Rect(enemy[0],enemy[1],40,40)
+
+                    if started and (enemy_rect.colliderect(player_rect) or enemy [1] > height):
+                        return "menu"
+
+                    for bullet in bullets[:]:
+                        bullet_rect = pygame.Rect(bullet[0],bullet[1],10,20)
+                        if ubllet_rect.colliderect(enemy_rect):
+                            bullets.remove(bullet)
+                            enemies.remove(enemy)
+                            score += 1
+                            break
+                draw_score(screen, score)
+
+                if not started:
+                    draw start msg(screen)
+
+                pygame.display.update()
+                clock.tick(fps)
